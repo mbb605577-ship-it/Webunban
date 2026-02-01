@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>One-Tap Tool</title>
+    <style>
+        body { 
+            background: black; 
+            margin: 0; 
+            padding: 10px; 
+            font-family: Arial; 
+            color: lime; 
+        }
+        .box { 
+            background: #111; 
+            border: 2px solid lime; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+        }
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 8px 0; 
+            background: black; 
+            border: 1px solid lime; 
+            color: lime; 
+            font-size: 16px; 
+            box-sizing: border-box; 
+        }
+        button { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border: none; 
+            font-size: 18px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border-radius: 5px; 
+        }
+        .unban { 
+            background: black; 
+            color: lime; 
+            border: 2px solid lime; 
+        }
+        .ban { 
+            background: black; 
+            color: red; 
+            border: 2px solid red; 
+        }
+        .log { 
+            background: black; 
+            color: lime; 
+            padding: 10px; 
+            margin-top: 15px; 
+            border: 1px solid #333; 
+            height: 200px; 
+            overflow-y: auto; 
+            font-size: 13px; 
+            white-space: pre-wrap; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <strong>📱 NOMOR TARGET:</strong>
+    <input type="text" id="number" placeholder="628xxxxxxx">
+</div>
+
+<div class="box">
+    <button class="unban" onclick="unban()">🔓 UNBAN SEKARANG</button>
+    <button class="ban" onclick="ban()">☠️ BAN SEKARANG</button>
+</div>
+
+<div class="box">
+    <strong>📟 LOG:</strong>
+    <div class="log" id="log">
+[System] Ready.
+    </div>
+</div>
+
+<script>
+const log = document.getElementById('log');
+function add(m) { log.innerHTML += m + '\n'; log.scrollTop = log.scrollHeight; }
+
+async function unban() {
+    let num = document.getElementById('number').value;
+    if(!num.match(/^62[0-9]{9,12}$/)) { add('[!] Nomor salah'); return; }
+    
+    add(`[+] Mulai UNBAN ${num}...`);
+    add('[1] Spoofing device...');
+    await sleep(800);
+    add('[2] Request session baru...');
+    await sleep(800);
+    add('[3] Bypass via API...');
+    await sleep(800);
+    add('[✓] UNBAN BERHASIL!');
+    add(`Link: https://web.whatsapp.com/s/${btoa(num)}`);
+}
+
+async function ban() {
+    let num = document.getElementById('number').value;
+    if(!num.match(/^62[0-9]{9,12}$/)) { add('[!] Nomor salah'); return; }
+    
+    add(`[+] Mulai BAN ${num}...`);
+    add('[1] Melaporkan 50x...');
+    await sleep(600);
+    add('[2] Flood OTP...');
+    await sleep(600);
+    add('[3] Inject pelanggaran...');
+    await sleep(600);
+    add('[✓] BAN sukses! Target akan kena banned 1-24 jam.');
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+</script>
+
+</body>
+</html>
